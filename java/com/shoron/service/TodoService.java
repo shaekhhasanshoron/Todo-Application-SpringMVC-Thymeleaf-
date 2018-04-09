@@ -2,6 +2,7 @@ package com.shoron.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,5 +20,29 @@ public class TodoService {
 		todoList.add(new Todo(2, "Do Exercise", "Do some home workuout and running", new Date(), false));
 		todoList.add(new Todo(3, "Go To Work", "Go to office for work", new Date(), false));
 	}
-	
+
+	public void addTodo(String name, String desc, Date targetDate, boolean isDone) {
+		numberOfTodos = numberOfTodos + 1;
+		todoList.add(new Todo(numberOfTodos, name, desc, targetDate, isDone));
+	}
+
+	public void deleteTodo(int id) {
+		Iterator<Todo> iterate = todoList.iterator();
+		while (iterate.hasNext()) {
+			Todo todo = iterate.next();
+			if (todo.getId() == id) {
+				iterate.remove();
+			}
+		}
+	}
+
+	public List<Todo> retrieveTodos(String user) {
+		List<Todo> listOfTodos = new ArrayList<Todo>();
+		for (Todo todo : todoList) {
+			if (todo.getUser().equals(user)) {
+				listOfTodos.add(todo);
+			}
+		}
+		return listOfTodos;
+	}
 }
