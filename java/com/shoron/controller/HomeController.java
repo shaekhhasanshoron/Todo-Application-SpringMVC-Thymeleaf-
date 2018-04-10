@@ -7,6 +7,8 @@ import org.springframework.core.SpringVersion;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.shoron.service.TodoService;
+import com.shoron.todo.Todo;
 
 @Controller
 @SessionAttributes("name")
@@ -26,23 +29,24 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String indexPage() {
 		return "index";
-	}
-	
+	}		
 	
 	@RequestMapping(value = "/todo", method = RequestMethod.GET)
 	public String listOfTodos(Model model) {
 		model.addAttribute("todoList", todoService.retrieveTodos("shoron"));
 		return "list-todo";
 	}
+	
 
 	@RequestMapping(value = "/addtodo", method = RequestMethod.GET)
 	public String showTodoListPage(Model model) {
+		model.addAttribute("todo",new Todo());
 		return "add-update-todo";
 	}
 
 	@RequestMapping(value = "/addtodo", method = RequestMethod.POST)
-	public String addTodos(ModelMap model,@RequestParam String description) {
-		todoService.addTodo("shoron", description, new Date(), false);
+	public String addTodos(ModelMap model,@Validated Todo todo, BindingResult result) {
+		todoService.addTodo("shoron",todo.getDescription(), new Date(), false);
 		model.clear(); // for not letting any extra parameter
 		return "redirect:/todo";
 	}
