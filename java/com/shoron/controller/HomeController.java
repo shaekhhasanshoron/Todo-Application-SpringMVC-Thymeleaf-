@@ -26,7 +26,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String indexPage() {
 		return "index";
-	}	
+	}
+	
 	
 	@RequestMapping(value = "/todo", method = RequestMethod.GET)
 	public String listOfTodos(Model model) {
