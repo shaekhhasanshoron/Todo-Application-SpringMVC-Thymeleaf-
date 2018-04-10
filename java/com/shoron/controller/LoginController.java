@@ -27,15 +27,18 @@ public class LoginController {
 			@RequestParam String password,
 			Model model){
 		
-		if(loginService.validateUser(name, password)){
-			model.addAttribute("name",name);
-			model.addAttribute("password",password);
-			return "welcome";
-		}
-		else{
-			model.addAttribute("errorMessage","Invalid Username or Password");
-				return "login";		
-		}
+//		if(loginService.validateUser(name, password)){
+//			model.addAttribute("name",name);
+//			model.addAttribute("password",password);
+//			return "welcome";
+//		}
+//		else{
+//			model.addAttribute("errorMessage","Invalid Username or Password");
+//				return "login";		
+//		}
+		model.addAttribute("name",name);
+		model.addAttribute("password",password);
+		return "welcome";
 		
 	
 	}

@@ -18,7 +18,8 @@ public class HomeController {
 	TodoService todoService;
 	
 	@RequestMapping(value="/todo", method=RequestMethod.GET)
-	public String listOfTodos(Model model){
+	public String listOfTodos(@RequestParam String name,Model model){
+		model.addAttribute("name",name);
 		model.addAttribute("todoList", todoService.retrieveTodos("shoron"));
 		return "todo";
 	}	

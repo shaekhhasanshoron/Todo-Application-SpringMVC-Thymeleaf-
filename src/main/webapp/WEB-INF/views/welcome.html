@@ -6,6 +6,6 @@
 </head>
 <body>
 <p th:text="'Welcome '+ ${name}"></p>
-<a href="todo">Todo Page</a>
+<a th:href="@{/todo(name=${name})}">Todo Page</a>
 </body>
 </html>
