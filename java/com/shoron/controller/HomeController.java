@@ -2,6 +2,8 @@ package com.shoron.controller;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.SpringVersion;
 import org.springframework.stereotype.Controller;
@@ -42,10 +44,14 @@ public class HomeController {
 	public String showTodoListPage(Model model) {
 		model.addAttribute("todo",new Todo());
 		return "add-update-todo";
-	}
+	}		
 
 	@RequestMapping(value = "/addtodo", method = RequestMethod.POST)
-	public String addTodos(ModelMap model,@Validated Todo todo, BindingResult result) {
+	public String addTodos(ModelMap model,@Valid Todo todo, BindingResult result) {
+		
+		if(result.hasErrors()){
+			return "add-update-todo";
+		}
 		todoService.addTodo("shoron",todo.getDescription(), new Date(), false);
 		model.clear(); // for not letting any extra parameter
 		return "redirect:/todo";
