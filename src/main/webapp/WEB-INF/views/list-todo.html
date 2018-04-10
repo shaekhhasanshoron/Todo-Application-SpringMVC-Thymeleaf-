@@ -4,30 +4,37 @@
 	xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8" />
 <title>Todo App</title>
+<link href="webjars/bootstrap/4.0.0/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"
+	type="text/css" rel="stylesheet"></link>
 </head>
 <body>
-	<h1>Todo App Page</h1>
-	<p th:text="'My name is '+${name}+' and my todo list is:'"></p>
-	<!-- <p th:text="${todoList}"></p> -->
 
+	<div class="container">
+		<h1>Todo App Page</h1>
+		<p th:text="'My name is '+${name}+' and my todo list is:'"></p>
 
-	<table border="2">
-		<tr>
-			<th>Id</th>
-			<th>Description</th>
-			<th>Target Date</th>
-			<th>Is Complete?</th>
-		</tr>
-		<tr th:each="todo : ${todoList}">
-			<td th:text="${todo.id}"></td>
-			<td th:text="${todo.description}"></td>
-			<td th:text="${todo.targetDate}"></td>
-			<td th:text="${todo.Done}"></td>
-		</tr>
-	</table>
+		<table class="table table-striped">
+			<tr>
+				<th>Id</th>
+				<th>Description</th>
+				<th>Target Date</th>
+				<th>Is Complete?</th>
+			</tr>
+			<tr th:each="todo : ${todoList}">
+				<td th:text="${todo.id}"></td>
+				<td th:text="${todo.description}"></td>
+				<td th:text="${todo.targetDate}"></td>
+				<td th:text="${todo.Done}"></td>
+			</tr>
+		</table>
 
-	<p>
-		<a class="button" th:href="@{/addtodo/}">Add a Todo</a>
-	</p>
+		<p>
+			<a class="btn btn-success" th:href="@{/addtodo/}">Add a Todo</a>
+		</p>
+	</div>
+
+	<script th:src="@{/webjars/jquery/3.3.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"></script>
 </body>
 </html>

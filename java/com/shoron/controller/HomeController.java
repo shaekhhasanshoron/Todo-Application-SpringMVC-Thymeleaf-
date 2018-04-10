@@ -27,7 +27,7 @@ public class HomeController {
 	public String indexPage() {
 		return "index";
 	}
-
+	
 	@RequestMapping(value = "/todo", method = RequestMethod.GET)
 	public String listOfTodos(Model model) {
 		model.addAttribute("todoList", todoService.retrieveTodos("shoron"));
