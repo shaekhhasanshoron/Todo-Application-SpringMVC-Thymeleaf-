@@ -8,18 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.shoron.service.TodoService;
 
 @Controller
+@SessionAttributes("name")
 public class HomeController {
 
 	@Autowired
 	TodoService todoService;
 	
 	@RequestMapping(value="/todo", method=RequestMethod.GET)
-	public String listOfTodos(@RequestParam String name,Model model){
-		model.addAttribute("name",name);
+	public String listOfTodos(Model model){
 		model.addAttribute("todoList", todoService.retrieveTodos("shoron"));
 		return "todo";
 	}	

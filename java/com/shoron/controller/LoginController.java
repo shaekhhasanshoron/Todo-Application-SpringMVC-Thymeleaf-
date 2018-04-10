@@ -6,11 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 
 import com.shoron.service.LoginService;
 
 
 @Controller
+@SessionAttributes("name")
 public class LoginController {
 
 	@Autowired
@@ -37,10 +41,16 @@ public class LoginController {
 //				return "login";		
 //		}
 		model.addAttribute("name",name);
-		model.addAttribute("password",password);
 		return "welcome";
 		
 	
+	}
+	
+	
+	@RequestMapping(value="/logout")
+	public String logout(WebRequest request, SessionStatus status){
+		status.setComplete();
+		return "login";
 	}
 	
 }
