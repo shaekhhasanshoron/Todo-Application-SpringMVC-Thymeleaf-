@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Todo Page</title>
+</head>
+<body>
+	<h1>Add a todo</h1>
+
+	<form th:action="@{/addtodo/}" th:object="${todo}" method="post">
+		<p>
+			<!-- Description: <input type="text" name="description" th:value="*{id}"/> -->
+			Description <input type="text" th:name="description" />
+		</p>
+		<p>
+			<input type="submit" value="Submit" /> 
+			<input type="reset"	value="Reset" />
+		</p>
+	</form>
+	
+</body>
+</html>

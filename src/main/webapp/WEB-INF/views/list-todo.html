@@ -10,5 +10,7 @@
 	<p th:text="'My name is '+${name}+' and my todo list is:'"></p>
 	
 	<p th:text="${todoList}"></p>
+	
+	<p><a class="button" th:href="@{/addtodo/}">Add a Todo</a></p>
 </body>
 </html>
