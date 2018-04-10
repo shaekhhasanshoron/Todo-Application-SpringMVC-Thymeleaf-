@@ -37,8 +37,7 @@ public class HomeController {
 	public String listOfTodos(Model model) {
 		model.addAttribute("todoList", todoService.retrieveTodos("shoron"));
 		return "list-todo";
-	}
-	
+	}	
 
 	@RequestMapping(value = "/addtodo", method = RequestMethod.GET)
 	public String showTodoListPage(Model model) {
@@ -47,7 +46,7 @@ public class HomeController {
 	}		
 
 	@RequestMapping(value = "/addtodo", method = RequestMethod.POST)
-	public String addTodos(ModelMap model,@Valid Todo todo, BindingResult result) {
+	public String addTodo(ModelMap model,@Valid Todo todo, BindingResult result) {
 		
 		if(result.hasErrors()){
 			return "add-update-todo";
@@ -57,8 +56,28 @@ public class HomeController {
 		return "redirect:/todo";
 	}
 	
+	@RequestMapping(value = "/updatetodo", method = RequestMethod.GET)
+	public String getSingleTodo(ModelMap model,@RequestParam int id) {
+		Todo todo=todoService.retrieveSingleTodo(id);
+		model.clear();
+		model.addAttribute("todo",todo);
+		return "add-update-todo";
+	}
+	
+	@RequestMapping(value = "/updatetodo", method = RequestMethod.POST)
+	public String updateTodo(ModelMap model,@Valid Todo todo, BindingResult result) {
+		
+		if(result.hasErrors()){
+			return "add-update-todo";
+		}
+		model.clear();
+		todoService.updateTodo(todo);
+		return "redirect:/todo";
+	}
+	
+	
 	@RequestMapping(value = "/deletetodo", method = RequestMethod.GET)
-	public String deleteTodos(ModelMap model,@RequestParam int id) {
+	public String deleteTodo(ModelMap model,@RequestParam int id) {
 		todoService.deleteTodo(id);
 		model.clear();
 		return "redirect:/todo";

@@ -45,4 +45,17 @@ public class TodoService {
 		}
 		return listOfTodos;
 	}
+
+	public Todo retrieveSingleTodo(int id) {
+		for (Todo todo : todoList) {
+			if (todo.getId() == id)
+				return todo;
+		}
+		return null;
+	}
+
+	public void updateTodo(Todo todo) {
+		deleteTodo(todo.getId());
+		todoList.add(todo);
+	}
 }
