@@ -16,9 +16,9 @@ public class TodoService {
 	private static int numberOfTodos = 3;
 
 	static {
-		todoList.add(new Todo(1, "Wake Up Morning", "Wake up early in the morning", new Date(), false));
-		todoList.add(new Todo(2, "Do Exercise", "Do some home workuout and running", new Date(), false));
-		todoList.add(new Todo(3, "Go To Work", "Go to office for work", new Date(), false));
+		todoList.add(new Todo(1, "shoron", "Wake up early in the morning", new Date(), false));
+		todoList.add(new Todo(2, "shoron", "Do some home workuout and running", new Date(), false));
+		todoList.add(new Todo(3, "shoron", "Go to office for work", new Date(), false));
 	}
 
 	public void addTodo(String name, String desc, Date targetDate, boolean isDone) {

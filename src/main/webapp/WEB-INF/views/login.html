@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Login Page</title>
+</head>
+<body>
+	<h2>Login Page</h2>
+	<p th:text="${errorMessage}"></p>
+	<form action="/TodoWithSpringAndThymeleaf/login" method="post">
+		<p>
+			Name: <input type="text" name="name" />
+		</p>
+		<p>
+			Password: <input type="password" name="password" />
+		</p>
+		<p>
+			<input type="submit" value="Submit" />
+		</p>
+	</form>
+</body>
+</html>

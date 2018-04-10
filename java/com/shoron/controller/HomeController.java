@@ -17,10 +17,15 @@ public class HomeController {
 	@Autowired
 	TodoService todoService;
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value="/todo", method=RequestMethod.GET)
 	public String listOfTodos(Model model){
-		model.addAttribute("todoList", todoService.retrieveTodos("Wake Up Morning"));
+		model.addAttribute("todoList", todoService.retrieveTodos("shoron"));
 		return "todo";
 	}	
+	
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public String indexPage(){
+		return "index";
+	}
 
 }
