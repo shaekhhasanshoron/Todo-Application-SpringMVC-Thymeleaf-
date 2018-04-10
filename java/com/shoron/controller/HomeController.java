@@ -26,7 +26,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String indexPage() {
 		return "index";
-	}
+	}	
 	
 	@RequestMapping(value = "/todo", method = RequestMethod.GET)
 	public String listOfTodos(Model model) {
@@ -45,5 +45,11 @@ public class HomeController {
 		model.clear(); // for not letting any extra parameter
 		return "redirect:/todo";
 	}
-
+	
+	@RequestMapping(value = "/deletetodo", method = RequestMethod.GET)
+	public String deleteTodos(ModelMap model,@RequestParam int id) {
+		todoService.deleteTodo(id);
+		model.clear();
+		return "redirect:/todo";
+	}
 }

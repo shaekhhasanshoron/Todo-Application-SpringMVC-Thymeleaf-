@@ -20,12 +20,14 @@
 				<th>Description</th>
 				<th>Target Date</th>
 				<th>Is Complete?</th>
+				<th></th>
 			</tr>
 			<tr th:each="todo : ${todoList}">
 				<td th:text="${todo.id}"></td>
 				<td th:text="${todo.description}"></td>
 				<td th:text="${todo.targetDate}"></td>
 				<td th:text="${todo.Done}"></td>
+				<td><a class="btn btn-danger" th:href="@{/deletetodo(id=${todo.id})}">Delete</a></td>
 			</tr>
 		</table>
 
