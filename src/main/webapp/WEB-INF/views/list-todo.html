@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
-<head lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="UTF-8" />
 <title>Todo App</title>
 <link href="webjars/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -9,6 +9,9 @@
 	type="text/css" rel="stylesheet"></link>
 </head>
 <body>
+
+	<span th:include="/templates/navigation :: #navigationId"></span>
+
 
 	<div class="container">
 		<h1>Todo App Page</h1>
@@ -27,10 +30,12 @@
 				<td th:text="${todo.id}"></td>
 				<td th:text="${todo.description}"></td>
 				<td th:text="${#dates.format(todo.targetDate, 'dd-MM-yyyy')}"></td>
-	
+
 				<td th:text="${todo.Done}"></td>
-				<td><a class="btn btn-danger" th:href="@{/deletetodo(id=${todo.id})}">Delete</a></td>
-				<td><a class="btn btn-primary" th:href="@{/updatetodo(id=${todo.id})}">Update</a></td>
+				<td><a class="btn btn-danger"
+					th:href="@{/deletetodo(id=${todo.id})}">Delete</a></td>
+				<td><a class="btn btn-primary"
+					th:href="@{/updatetodo(id=${todo.id})}">Update</a></td>
 			</tr>
 		</table>
 

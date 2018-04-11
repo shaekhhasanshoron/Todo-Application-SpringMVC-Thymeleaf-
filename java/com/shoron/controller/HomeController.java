@@ -36,8 +36,10 @@ public class HomeController {
 	protected void initBinder(WebDataBinder binder){
 		SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
 		binder.registerCustomEditor(Date.class,new CustomDateEditor(dateFormat, false));
-	}
-
+	}	
+	
+	
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String indexPage() {
 		return "index";
