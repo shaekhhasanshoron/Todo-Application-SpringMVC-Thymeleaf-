@@ -37,18 +37,20 @@ public class HomeController {
 		SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
 		binder.registerCustomEditor(Date.class,new CustomDateEditor(dateFormat, false));
 	}	
-	
-	
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+		
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String indexPage() {
 		return "index";
 	}		
 	
 	@RequestMapping(value = "/todo", method = RequestMethod.GET)
 	public String listOfTodos(Model model) {
-		model.addAttribute("todoList", todoService.retrieveTodos("shoron"));
+		model.addAttribute("todoList", todoService.retrieveTodos(retriveLoggedinUserName()));
 		return "list-todo";
+	}
+
+	private String retriveLoggedinUserName() {
+		return "shoron";
 	}	
 
 	@RequestMapping(value = "/addtodo", method = RequestMethod.GET)
@@ -63,7 +65,7 @@ public class HomeController {
 		if(result.hasErrors()){
 			return "add-update-todo";
 		}
-		todoService.addTodo("shoron",todo.getDescription(), new Date(), false);
+		todoService.addTodo(retriveLoggedinUserName(),todo.getDescription(), new Date(), false);
 		model.clear(); // for not letting any extra parameter
 		return "redirect:/todo";
 	}

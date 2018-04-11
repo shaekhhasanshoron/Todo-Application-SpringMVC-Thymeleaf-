@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <title>Welcome</title>
+<link href="webjars/bootstrap/4.0.0/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"
+	type="text/css" rel="stylesheet"></link>
 </head>
 <body>
-<p th:text="'Welcome '+ ${name}"></p>
-<a th:href="@{/todo/}">Todo Page</a>
-<br/>
-<a href="logout">Logout</a>
+
+	<span th:include="/templates/navigation :: #navigationId"></span>
+	<div class="container">
+		<p th:text="'Welcome '+ ${name}"></p>
+		<a th:href="@{/todo/}">Todo Page</a> <br /> <a href="logout">Logout</a>
+	</div>
+	<script th:src="@{/webjars/jquery/3.3.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"></script>
 
 </body>
 </html>
