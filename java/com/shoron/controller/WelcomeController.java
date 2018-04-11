@@ -1,6 +1,14 @@
 package com.shoron.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.net.jsse.openssl.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -26,7 +34,7 @@ public class WelcomeController {
 	public String showLoginPage(ModelMap model){
 		model.put("name", "shoron");
 		return "welcome";
-	}
+	}	
 	
 //	@RequestMapping(value="/login", method= RequestMethod.POST)
 //	public String handleLoginRequest(@RequestParam String name,
@@ -50,9 +58,15 @@ public class WelcomeController {
 	
 	
 	@RequestMapping(value="/logout")
-	public String logout(WebRequest request, SessionStatus status){
-		status.setComplete();
-		return "/login";
+	public String logout(HttpServletRequest request,HttpServletResponse response){
+		
+		org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null){    
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	        request.getSession().invalidate();
+	    }
+	 
+		return "redirect:/";
 	}
 	
 }
