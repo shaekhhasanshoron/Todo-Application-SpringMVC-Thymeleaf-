@@ -15,15 +15,21 @@
 
 		<form action="#" th:action="@{/updatetodo/}" th:object="${todo}"
 			method="post">
-			<input type="hidden" th:field="*{id}" />
-			<input type="hidden" th:field="*{user}" />
+			<input type="hidden" th:field="*{id}" /> <input type="hidden"
+				th:field="*{user}" />
 			<!-- Description: <input type="text" name="description" th:value="*{id}"/> -->
 			<fieldset class="form-group">
 				<label>Description</label> <input type="text"
 					th:field="*{description}" class="form-control" required="required" />
 				<p class="text-warning" th:if="${#fields.hasErrors('description')}"
 					th:errors="*{description}"></p>
-
+			</fieldset>
+			
+			<fieldset class="form-group">
+				<label>Target Date</label> <input type="text"
+					th:field="*{targetDate}" class="form-control" required="required" />
+				<p class="text-warning" th:if="${#fields.hasErrors('targetDate')}"
+					th:errors="*{targetDate}"></p>
 			</fieldset>
 
 			<p>
